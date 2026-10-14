@@ -1,0 +1,73 @@
+import os
+import time
+
+RED = '\033[41m'
+WHITE = '\033[47m'
+BLUE = '\033[44m'
+RESET = '\033[0m'
+
+def flag():
+    width = 30
+    bands = [
+        (RED, 2),
+        (WHITE, 2),
+        (BLUE, 4),
+        (WHITE, 2),
+        (RED, 2)
+    ]
+    for c, n in bands:
+        for _ in range(n):
+            print(c + ' ' * width + RESET)
+flag() 
+""" def pattern():
+    for row in range(9):
+        print(' '.join('f' if (row + col) % 2 == 0 else ' ' for col in range(17)))
+pattern()
+
+def animation():
+    frames = [
+        ['    *', '   ***', '  *****', ' *******'],
+        ['   *', '  ***', ' *****', '*******'],
+        ['  *', ' ***', '*****', '*******'],
+        [' *', '***', '*****', '*******']
+    ]
+    for _ in range(2):
+        for frame in frames:
+            os.system('cls' if os.name == 'nt' else 'clear')
+            print('\n'.join(frame))
+            time.sleep(0.3)
+animation()
+
+def sequence():
+    with open('sequence.txt', 'r') as f:
+        vals = [float(s.strip()) for s in f if s.strip()]
+    cnt1 = sum(1 for v in vals if v > 5)
+    cnt2 = sum(1 for v in vals if 0 < v < 5)
+    total = cnt1 + cnt2
+    if total == 0:
+        print('Нет подходящих чисел')
+        return
+    print(RED + ' ' * int(cnt1 / total * 40) + RESET, f'{cnt1 / total * 100:.2f}%')
+    print(BLUE + ' ' * int(cnt2 / total * 40) + RESET, f'{cnt2 / total * 100:.2f}%')
+sequence()
+
+def graph():
+    height = 10
+    width = 20
+    pts = []
+    for x in range(1, width + 1):
+        y = 1 / x
+        y_pos = height - round(y * height)
+        pts.append((y_pos, x - 1))
+    grid = [[' ' for c in range(width)] for r in range(height + 1)]
+    for r in range(height + 1):
+        grid[r][0] = '|'
+    for c in range(width):
+        grid[height][c] = '-'
+    grid[height][0] = '+'
+    for r, c in pts:
+        grid[r][c] = '*'
+    for line in grid:
+        print(''.join(line))
+graph()
+ """
